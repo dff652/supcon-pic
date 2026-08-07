@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+
+# 客户工程数据一律不入库：.pic / 点表 / 导出台账都含现场位号
+*.pic
+*.mdb
+*.csv
+*.zip
+data/
+out/

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "supcon-pic"
+version = "0.1.0"
+description = "SUPCON DCS 流程图 (.pic / SDFF) 与工程点表 (Tags.mdb) 解析器"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "ff.dou" }]
+keywords = ["supcon", "dcs", "scada", "sdff", "pic", "reverse-engineering"]
+dependencies = []   # 解析器只用 stdlib：struct + zlib
+
+[project.optional-dependencies]
+# 读 Access Jet DB 点表。纯 Python，不需要 ODBC / mdbtools。
+tagdb = ["access_parser>=0.0.6"]
+dev = ["pytest>=7"]
+
+[project.scripts]
+supcon-pic = "supcon_pic.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
