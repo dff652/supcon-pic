@@ -83,6 +83,7 @@ tags["P1_PT100201B_3"].limits      # {'LL': ..., 'H': ..., ...}
 
 ## 文档
 
+- [docs/status.md](docs/status.md) — **项目状态、下一步与仓库约定（先看这份）**
 - [docs/format-spec.md](docs/format-spec.md) — SDFF 容器与属性树的完整格式规格
 - [docs/tag-database.md](docs/tag-database.md) — `Tags.mdb` 点表结构与读取
 - [docs/research-notes.md](docs/research-notes.md) — 调研全记录：溯源、逆向过程、
