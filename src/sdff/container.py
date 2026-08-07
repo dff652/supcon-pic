@@ -1,6 +1,6 @@
 """SDFF 容器与 TLV 属性树解析（纯 stdlib）。
 
-SUPCON DCS 流程图 `.pic` 文件的底层格式，规格见 docs/format-spec.md。
+DCS 流程图 `.pic` 文件的底层格式，规格见 docs/format-spec.md。
 本模块只负责「字节 → Python 对象」，不做任何领域解释。
 """
 
@@ -18,7 +18,7 @@ DIR_ENTRY_SIZE = 0x80
 #: 已知流名。文件里出现顺序即目录顺序。
 STREAM_NAMES = ("DocInfo", "PageInfo", "Shape", "Tag", "Text")
 
-#: 属性树里字符串的编码。SUPCON 组态软件是简体中文 Windows 程序。
+#: 属性树里字符串的编码。组态软件是简体中文 Windows 程序。
 ENCODING = "gbk"
 
 
@@ -158,7 +158,7 @@ def _parse_records(buf: bytes, pos: int, end: int) -> list[tuple[str, Any]]:
 def _collapse(items: list[tuple[str, Any]]):
     """键全是十进制数字的容器还原成 list，其余成 dict。
 
-    SUPCON 用 "0"/"1"/"2"… 表示数组元素（lstShape / texts / tag 都是这种）。
+    格式用 "0"/"1"/"2"… 表示数组元素（lstShape / texts / tag 都是这种）。
     """
     if items and all(key.isdigit() for key, _ in items):
         return [value for _, value in items]

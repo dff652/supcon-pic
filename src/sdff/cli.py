@@ -1,4 +1,4 @@
-"""命令行入口：`python -m supcon_pic <命令>`。"""
+"""命令行入口：`python -m sdff <命令>`。"""
 
 from __future__ import annotations
 
@@ -9,7 +9,7 @@ import json
 import os
 import sys
 
-from .sdff import Array, load
+from .container import Array, load
 from .shapes import extract_page, referenced_tags
 
 
@@ -114,7 +114,7 @@ def cmd_tags(args) -> int:
 
 
 def main(argv=None) -> int:
-    parser = argparse.ArgumentParser(prog="supcon-pic", description=__doc__)
+    parser = argparse.ArgumentParser(prog="sdff", description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
 
     p_info = sub.add_parser("info", help="打印概览 / 批量解析自检")

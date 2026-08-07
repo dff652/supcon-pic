@@ -1,10 +1,10 @@
-"""SUPCON 工程点表（`Control/CA*/CS*/Tag/Tags.mdb`）读取。
+"""DCS 工程点表（`Control/CA*/CS*/Tag/Tags.mdb`）读取。
 
 流程图只给位号字符串，中文描述、工程量程、单位和报警限都在点表里。
 每个控制站一个 Tags.mdb，需要全部读进来才拿得到完整字典。
 
 依赖可选的 `access_parser`（纯 Python 读 Access Jet DB）：
-    pip install "supcon-pic[tagdb]"
+    pip install "sdff-tools[tagdb]"
 """
 
 from __future__ import annotations
@@ -121,7 +121,7 @@ def load_station(path: str) -> dict[str, TagInfo]:
         from access_parser import AccessParser
     except ImportError as exc:  # pragma: no cover - 依赖缺失路径
         raise ImportError(
-            "读点表需要 access_parser：pip install 'supcon-pic[tagdb]'"
+            "读点表需要 access_parser：pip install 'sdff-tools[tagdb]'"
         ) from exc
 
     station = os.path.basename(os.path.dirname(os.path.dirname(path)))

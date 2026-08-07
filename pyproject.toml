@@ -3,14 +3,14 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "supcon-pic"
-version = "0.1.0"
-description = "SUPCON DCS 流程图 (.pic / SDFF) 与工程点表 (Tags.mdb) 解析器"
+name = "sdff-tools"
+version = "0.2.0"
+description = "SDFF 格式解析器：DCS 流程图 (.pic) 与工程点表 (Tags.mdb)"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "ff.dou" }]
-keywords = ["supcon", "dcs", "scada", "sdff", "pic", "reverse-engineering"]
+keywords = ["sdff", "pic", "dcs", "scada", "hmi", "reverse-engineering"]
 dependencies = []   # 解析器只用 stdlib：struct + zlib
 
 [project.optional-dependencies]
@@ -19,7 +19,7 @@ tagdb = ["access_parser>=0.0.6"]
 dev = ["pytest>=7"]
 
 [project.scripts]
-supcon-pic = "supcon_pic.cli:main"
+sdff = "sdff.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

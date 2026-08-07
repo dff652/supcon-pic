@@ -5,8 +5,8 @@ import struct
 import pytest
 
 from conftest import array, build_pic, byte, container, f64, i32, obj_list, str_list, stream, text
-from supcon_pic import SdffError, load, loads
-from supcon_pic.sdff import Array, parse_stream
+from sdff import SdffError, load, loads
+from sdff.container import Array, parse_stream
 
 
 def test_scalar_types_round_trip():

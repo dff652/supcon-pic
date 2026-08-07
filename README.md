@@ -1,10 +1,12 @@
-# supcon-pic
+# sdff-tools
 
-**中控技术 SUPCON DCS** 流程图 (`.pic`) 与工程点表 (`Tags.mdb`) 解析器。
+**SDFF** 格式解析器——DCS 操作站流程图 (`.pic`) 与工程点表 (`Tags.mdb`)。
 
-`.pic` 是 SUPCON WebField 系列 DCS 操作站流程图的私有二进制格式（内部魔数 `SDFF`），
-由官方组态软件 SCDrawEx 产生。**没有公开规格，也没有其他开源实现**——本项目的
-格式结论全部来自对真实工程文件的逆向，并已在 82 个文件上全量验证。
+`.pic` 是一种 DCS 组态软件产生的私有二进制格式，文件头四字节即格式自报的魔数
+`SDFF`。**没有公开规格，也没有其他开源实现**——本项目的格式结论全部来自对真实
+工程文件的逆向，并已在 82 个文件上全量验证。
+
+> `.pic` 是被大量复用的扩展名，与图像领域的同名格式无关；本项目认的是 `SDFF` 魔数。
 
 解析器只用 Python 标准库（`struct` + `zlib`）。
 
@@ -28,22 +30,22 @@ pip install -e ".[tagdb]"   # 额外支持读 Tags.mdb 点表
 
 ```bash
 # 批量概览，同时充当解析自检
-supcon-pic info /path/to/流程图目录/
+sdff info /path/to/流程图目录/
 
 # 导出单个文件的属性树 JSON（排查格式问题用）
-supcon-pic dump 喷雾干燥.pic --stream Tag
+sdff dump 喷雾干燥.pic --stream Tag
 
 # 抽取位号台账
-supcon-pic tags /path/to/流程图目录/ -o tags.csv
+sdff tags /path/to/流程图目录/ -o tags.csv
 
 # 台账 join 工程点表，补中文描述 / 单位 / 量程
-supcon-pic tags /path/to/流程图目录/ -o tags.csv --project /path/to/SUPCON_PROJECT
+sdff tags /path/to/流程图目录/ -o tags.csv --project /path/to/SUPCON_PROJECT
 ```
 
 ### Python
 
 ```python
-from supcon_pic import load, extract_page, referenced_tags
+from sdff import load, extract_page, referenced_tags
 
 doc = load("喷雾干燥.pic")
 doc.page_info["docWidth"]      # 1920
@@ -57,7 +59,7 @@ page.bindings[0].nearest_label # '过滤器'
 ```
 
 ```python
-from supcon_pic.tagdb import load_project
+from sdff.tagdb import load_project
 
 tags = load_project("/path/to/SUPCON_PROJECT")
 tags["P1_PT100201B_3"].desc        # '出口压力'

@@ -6,7 +6,7 @@
 
 import pytest
 
-from supcon_pic.tagdb import decode_jet4_text
+from sdff.tagdb import decode_jet4_text
 
 
 def test_pure_ascii_stays_compressed():
